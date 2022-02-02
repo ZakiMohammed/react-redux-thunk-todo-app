@@ -1,10 +1,9 @@
 import { FaTimes, FaPencilAlt } from 'react-icons/fa';
 import Button from '../shared/Button'
-import TaskActions from '../../context/task/TaskActions';
+import TaskServices from '../../context/task/TaskServices';
 import Card from '../shared/Card';
 import { useDispatch } from 'react-redux'
-import { remove, setTask } from '../../context/task/TaskSlice'
-import { setLoading } from '../../context/spinner/SpinnerSlice';
+import { remove, setTask, setLoading } from '../../context/task/TaskSlice'
 
 const TaskItem = ({ task }) => {
 
@@ -14,7 +13,7 @@ const TaskItem = ({ task }) => {
         try {
             dispatch(setLoading(true))
 
-            await TaskActions.remove(task._id)
+            await TaskServices.remove(task._id)
 
             dispatch(remove(task))
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 const Spinner = () => {
 
-    const loading = useSelector(state => state.spinner.loading)
+    const loading = useSelector(state => state.task.loading)
 
     return (
         loading &&

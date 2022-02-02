@@ -39,7 +39,7 @@ const removeAll = async () => {
     return response.data
 };
 
-const TaskActions = {
+const TaskServices = {
     getAll,
     add,
     update,
@@ -47,4 +47,4 @@ const TaskActions = {
     removeAll
 }
 
-export default TaskActions
+export default TaskServices

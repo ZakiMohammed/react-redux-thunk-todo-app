@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import TaskItem from './TaskItem'
-import TaskActions from '../../context/task/TaskActions'
-import { getAll } from '../../context/task/TaskSlice'
-import { setLoading } from '../../context/spinner/SpinnerSlice'
+import TaskServices from '../../context/task/TaskServices'
+import { getAll, setLoading } from '../../context/task/TaskSlice'
 
 const TaskList = () => {
 
@@ -15,7 +14,7 @@ const TaskList = () => {
             try {
                 dispatch(setLoading(true))
 
-                const data = await TaskActions.getAll()
+                const data = await TaskServices.getAll()
 
                 dispatch(getAll(data))
 

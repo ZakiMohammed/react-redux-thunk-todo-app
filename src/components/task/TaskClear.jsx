@@ -1,9 +1,8 @@
 import { FaTrashAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import Button from '../shared/Button'
-import TaskActions from '../../context/task/TaskActions'
-import { removeAll } from '../../context/task/TaskSlice'
-import { setLoading } from '../../context/spinner/SpinnerSlice'
+import TaskServices from '../../context/task/TaskServices'
+import { removeAll, setLoading } from '../../context/task/TaskSlice'
 
 const TaskClear = () => {
 
@@ -18,7 +17,7 @@ const TaskClear = () => {
 
             dispatch(setLoading(true))
 
-            await TaskActions.removeAll()
+            await TaskServices.removeAll()
 
             dispatch(removeAll())
 
