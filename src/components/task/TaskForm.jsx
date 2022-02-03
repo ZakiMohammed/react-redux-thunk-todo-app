@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import Button from '../shared/Button'
-import TaskServices from '../../context/task/TaskServices'
 import { useSelector, useDispatch } from 'react-redux'
-import { add, update, setLoading } from '../../context/task/TaskSlice'
+import TaskThunk from '../../context/task/TaskThunk'
 
 const TaskForm = () => {
 
@@ -27,24 +26,17 @@ const TaskForm = () => {
                 return;
             }
 
-            dispatch(setLoading(true))
-
             if (task) {
                 const dto = { ...task, title }
-                const updatedTask = await TaskServices.update(task._id, dto)
-
-                dispatch(update(updatedTask))
+                dispatch(TaskThunk.updateAsync(dto))
             } else {
                 const dto = { title };
-                const newTask = await TaskServices.add(dto)
-
-                dispatch(add(newTask))
+                dispatch(TaskThunk.addAsync(dto))
             }
 
         } catch (error) {
             window.alert(`Error Occurred: ${error.message}`)
         } finally {
-            dispatch(setLoading(false))
             setTitle('')
         }
     }

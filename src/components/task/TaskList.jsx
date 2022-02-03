@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import TaskItem from './TaskItem'
-import TaskServices from '../../context/task/TaskServices'
-import { getAll, setLoading } from '../../context/task/TaskSlice'
+import { getAllAsync } from '../../context/task/TaskThunk'
 
 const TaskList = () => {
 
@@ -11,18 +10,7 @@ const TaskList = () => {
 
     useEffect(() => {
         const getTasks = async () => {
-            try {
-                dispatch(setLoading(true))
-
-                const data = await TaskServices.getAll()
-
-                dispatch(getAll(data))
-
-            } catch (error) {
-                console.log(`Error Occurred: ${error.message}`)
-            } finally {
-                dispatch(setLoading(false))
-            }
+            dispatch(getAllAsync())
         }
 
         getTasks()
