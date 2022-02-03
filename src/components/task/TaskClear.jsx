@@ -1,8 +1,7 @@
 import { FaTrashAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import Button from '../shared/Button'
-import TaskServices from '../../context/task/TaskServices'
-import { removeAll, setLoading } from '../../context/task/TaskSlice'
+import TaskThunk from '../../context/task/TaskThunk';
 
 const TaskClear = () => {
 
@@ -15,16 +14,10 @@ const TaskClear = () => {
                 return;
             }
 
-            dispatch(setLoading(true))
-
-            await TaskServices.removeAll()
-
-            dispatch(removeAll())
+            dispatch(TaskThunk.removeAllAsync())
 
         } catch (error) {
             window.alert(`Error Occurred: ${error.message}`)
-        } finally {
-            dispatch(setLoading(false))
         }
     }
 

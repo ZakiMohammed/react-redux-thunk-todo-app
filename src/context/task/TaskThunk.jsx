@@ -22,10 +22,26 @@ export const updateAsync = createAsyncThunk(
     }
 )
 
+export const removeAsync = createAsyncThunk(
+    'task/removeAsync',
+    async (task) => {
+        return await TaskServices.remove(task._id, task)
+    }
+)
+
+export const removeAllAsync = createAsyncThunk(
+    'task/removeAllAsync',
+    async () => {
+        return await TaskServices.removeAll()
+    }
+)
+
 const TaskThunk = {
     getAllAsync,
     addAsync,
     updateAsync,
+    removeAsync,
+    removeAllAsync,
 }
 
 export default TaskThunk

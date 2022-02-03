@@ -29,9 +29,9 @@ const update = async (id, task) => {
     return response.data
 };
 
-const remove = async (id) => {
-    const response = await taskAxios.delete(`${id}`)
-    return response.data
+const remove = async (id, task) => {
+    await taskAxios.delete(`${id}`)
+    return task
 };
 
 const removeAll = async () => {
